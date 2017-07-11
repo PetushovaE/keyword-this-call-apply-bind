@@ -1,0 +1,14 @@
+NOTES
+
+Explicit Binding.
+
+Choose what we want the context of 'this' to be using call, apply or bind.
+
+name of method        parameters                invoke immediatly?
+
+call                  thisArg,a,b,c,d, ...      yes
+apply                 thisArg, [a,b,c,d, ...]   yes
+bind                  thisArg, a,b,c,d, ...     NO
+
+
+Implicit rule states whaen the keyword this inside of declared objectits value will always be closest parent object. This rule is not official, just helpfull way to keep track of the value of keyword this.

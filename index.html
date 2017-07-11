@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Nested Objects</title>
+	<h1>Nested Objects</h1>
+	<h2>What happens when we have a nested object?</h2>
+</head>
+<body>
+	<h2>3 - Explicit Binding</h2>
+	<p>Choose what we want the context of 'this' to be using call, apply or bind.
+		They only can be used by functions.<br><br>
+		Call and Apply almost identical but apply takes only two paramenters/arguments.<br><br>
+		Bind almost identical to Call except its not invoking your function immediatly Bind returns function definithion.<br><br>
+		We learnt that using call apply and bind cam change the context of keyword this.<br><br>
+
+		<strong>Fixing Up With Call:</strong><br><br>
+
+		ex: person.sayHi()// "Hi Colt"<br>
+		    person.determineContext() // true<br>
+
+		    ex with call:<br>
+		    	person.dog.sayHello.call(person) // "Hello Colt"<br>
+		    	person.dog.determineContext.call(person) // true<br>
+		    	//Using call worked! Notice that we do NOT invoke sayHello or determineContext
+
+	</p>
+	<p><strong>Very commonly Call Used to avoid code duplication</strong><br><br>
+		We have two objects which both have firstName property and  sayHello. We repeating ourselves in Elie object.<br>
+<br>
+		ex: var muhtar = {<br>
+			firstName: "Muhtar",<br>
+			sayHi: function(){<br>
+			return "Hi " + this.firstName<br>
+	 		}<br>
+		}<br><br>
+
+		var moska = {<br>
+		firstNmae: "Mos'ka",<br>
+		//look at all this duplication:(<br>
+		sayHi: function(){<br>
+		return "Hi " + this.firstName<br>
+		}<br>
+	}
+	<br>
+	muhtar.sayHi() // Hi Muhtar<br>
+	moska.sayHi() // Hi Mos'ka( but we had to copy and paste the function from above ..)<br><br>
+	//How can we refastor the duplication using call?<br>
+	//How can we "borrow" the sayHi function from Muhtar<br>
+	//and set the value of 'this' to be moska?<br>
+	------<br>
+	refactored:<br>
+	ex: var muhtar = {<br>
+			firstName: "Muhtar",<br>
+			sayHi: function(){<br>
+			return "Hi " + this.firstName<br>
+	 		}<br>
+		}<br><br>
+
+		var moska = {<br>
+		firstNmae: "Mos'ka",<br>
+		}<br>
+	}
+	<br><br>
+	muhtar.sayHi() // Hi Muhtar<br>
+	muhtar.sayHi.call(moska) // Hi Mos'ka<br>
+
+	// much better!
+	</p>
+</br>
+	<p>Simple js example:</p>
+	<button onclick="myFunction()">Person</button>
+
+	<p id="demo"></p>
+
+	<script type="text/javascript">
+
+
+
+	
+	var person = {
+		firstName: "Kate",
+		sayHi: function(){
+			return "Hi " + this.firstName;
+		},
+		determineContext: function(){
+			return this === person;
+		},
+		dog: {
+			sayHello: function(){
+				return "Hello " + this.firstName;
+			},
+			determineContext: function(){
+				return this == person;
+			}
+		}
+}
+
+function myFunction(){
+	person;
+	// person.dog;
+	document.getElementById("demo").innerHTML = "Hi, My name is " + person.firstName;
+	
+}
+
+	</script>
+
+</body>
+</html>
+
+<!-- person.sayHi() // "Hi Kate" -->
+<!-- person.determineContext() // true -->
+
+<!-- // but what is the value of the keyword this right now? -->
+<!-- person.dog.sayHello() // "Hello underfined " -->
+<!-- person.dog.determineContext() // false-->
+
+
+
