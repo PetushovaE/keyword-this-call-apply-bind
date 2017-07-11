@@ -67,6 +67,30 @@
 	// much better!
 	</p>
 </br>
+<h2>What about Apply?</h2>
+<p>It's almost identical to call - except the parameters!<br>
+	in case of call arguments passed as coma separated values, in apply as values in array.<br>
+	ex: var muhtar = {<br>
+			firstName: "Muhtar",<br>
+			sayHi: function(){<br>
+			return "Hi " + this.firstName<br>
+	 		},<br>
+	 		addNumbers: function(a,b,c,d){
+	 			return this.firstName + " just calculated " + ( a + b + c + d);
+	 		}
+		}<br><br>
+
+		var moska = {<br>
+			firstNmae: "Mos'ka",<br>
+			}<br>
+		}<br>
+
+		muhtar.addNumbers(1,2,3,4) // Muhtar just calculated 10<br>
+		muhtar.addNumbers.call(moska, 1,2,3,4) // Mos'ka just calculated 10<br>
+		muhtar.addNumbers.apply(moska, [1,2,3,4]) // Mos'ka just calculated 10<br>
+	
+</p>
+</br>
 	<p>Simple js example:</p>
 	<button onclick="myFunction()">Person</button>
 
